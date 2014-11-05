@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://oauth-io.github.io/oauth-js/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>OAuth.io - Demo</title>
+    <link rel="stylesheet" href="http://oauth-io.github.io/oauth-js/library/bootstrap.css">
+    <script type="text/javascript" async="" src="./OAuth.io_files/ga.js"></script><script src="./OAuth.io_files/jquery.min.js"></script>
+    <script src="./OAuth.io_files/bootstrap.min.js"></script>
+    <script src="./OAuth.io_files/oauth.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-42196684-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+
+    <!-- Boiletplate scripts (provider list / select event...) -->
+    <script src="./OAuth.io_files/oauth-boilerplate.js"></script>
+  </head>
+  <body data-twttr-rendered="true">
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-12">
+          <h1>
+            <img src="./OAuth.io_files/logo.png" class="pull-left" height="100" width="100"><span style="display: block; font-size: 1.5em; position: relative; top: 8px; margin-left: 115px">Serverless OAuth is now possible</span>
+          </h1>
+          <p style="margin-left: 120px; margin-top: 0px"><a href="https://oauth.io/">Visit OAuth.io</a> - <a href="https://github.com/oauth-io/oauth-js/tree/gh-pages">See the source on Github</a></p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 20px">
+        <div class="col col-lg-3">
+          <div style="margin-top: 5px">
+            <div id="provider_actions" style="float: right; display:inline-block;">
+              <div class="btn-group" data-toggle="buttons-radio">
+                <button type="button" class="btn btn-default active" id="popup_method">Popup</button>
+                <button type="button" ng-hover="" class="btn btn-default" id="redirect_method">Redirect</button>
+              </div>
+            </div>
+            <div style="clear: right; padding-top: 5px;" id="oauth-connect">
+              <button class="btn btn-block btn-default" data-provider="facebook" style="text-align: left" ng-="">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Facebook</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="twitter">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(1)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Twitter</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="github">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(2)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Github</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="stackexchange">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(3)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Stack Exchange</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="soundcloud">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(4)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Soundcloud</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="youtube">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(5)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Youtube</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="tumblr">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(6)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Tumblr</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="instagram">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(7)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Instagram</span>
+                </span>
+              </button>
+              <button class="btn btn-block btn-default" style="text-align: left" data-provider="linkedin">
+                <span style="display: block; margin-left: 10px">
+                  <img src="./OAuth.io_files/logo(8)" width="32" height="32" class="pull-left">
+                  <span style="display: block; margin-left: 43px; position: relative; top: 5px">Connect with Linkedin</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-9">
+          <h4>How to use OAuth.io SDK? it's really simple!</h4>
+          <p>After loading oauth.js, you can use <code>OAuth</code> object to authorize your user like this:</p>
+          <pre id="code"><span style="color: #777">// Initialize with your OAuth.io app public key</span>
+OAuth.initialize('<strong>Public key</strong>');
+OAuth.popup('<span class="provider" style="color: #428bca; font-weight: bold">github</span>', function(<span style="color: red; font-weight: bold">error</span>, <span style="color: orange; font-weight: bold">success</span>){
+  <span style="color: #777">// See the result below</span>
+});
+
+
+
+
+ </pre>
+          <h4 id="success-text" style="">Successful connection with <span class="provider stay">github</span></h4>
+          <h4 id="error-text" style="display: none;">Connection fail with <span></span></h4>
+          <pre id="result" style="display: block;">success = {
+  "access_token": "0c4b0b0bb6e9100703ca4235ad00634eefce6b76",
+  "token_type": "bearer"
+}
+
+error = null</pre>
+          <img id="placeholder-result" src="./OAuth.io_files/try.png" style="display: none;">
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col col-lg-12">
+          <h4 style="text-align: center">70+ APIs supported</h4>
+
+          <div id="providers" style="text-align: center">
+          <div class="row"></div><img data-toggle="tooltip" title="" data-original-title="soundcloud" style="margin: 4px;" src="./OAuth.io_files/logo(4)" width="28"><img data-toggle="tooltip" title="" data-original-title="orkut" style="margin: 4px;" src="./OAuth.io_files/logo(9)" width="28"><img data-toggle="tooltip" title="" data-original-title="google groups" style="margin: 4px;" src="./OAuth.io_files/logo(10)" width="28"><img data-toggle="tooltip" title="" data-original-title="google play" style="margin: 4px;" src="./OAuth.io_files/logo(11)" width="28"><img data-toggle="tooltip" title="" data-original-title="ohloh" style="margin: 4px;" src="./OAuth.io_files/logo(12)" width="28"><img data-toggle="tooltip" title="" data-original-title="bitly" style="margin: 4px;" src="./OAuth.io_files/logo(13)" width="28"><img data-toggle="tooltip" title="" data-original-title="google audit" style="margin: 4px;" src="./OAuth.io_files/logo(14)" width="28"><img data-toggle="tooltip" title="" data-original-title="google urlshortener" style="margin: 4px;" src="./OAuth.io_files/logo(15)" width="28"><img data-toggle="tooltip" title="" data-original-title="google apps" style="margin: 4px;" src="./OAuth.io_files/logo(16)" width="28"><img data-toggle="tooltip" title="" data-original-title="instagram" style="margin: 4px;" src="./OAuth.io_files/logo(7)" width="28"><img data-toggle="tooltip" title="" data-original-title="youtube" style="margin: 4px;" src="./OAuth.io_files/logo(5)" width="28"><img data-toggle="tooltip" title="" data-original-title="google enterprise licence manager" style="margin: 4px;" src="./OAuth.io_files/logo(17)" width="28"><img data-toggle="tooltip" title="" data-original-title="linkedin" style="margin: 4px;" src="./OAuth.io_files/logo(8)" width="28"><img data-toggle="tooltip" title="" data-original-title="wordpress" style="margin: 4px;" src="./OAuth.io_files/logo(18)" width="28"><img data-toggle="tooltip" title="" data-original-title="live" style="margin: 4px;" src="./OAuth.io_files/logo(19)" width="28"><div class="row"></div><img data-toggle="tooltip" title="" data-original-title="google bigquery" style="margin: 4px;" src="./OAuth.io_files/logo(20)" width="28"><img data-toggle="tooltip" title="" data-original-title="disqus" style="margin: 4px;" src="./OAuth.io_files/logo(21)" width="28"><img data-toggle="tooltip" title="" data-original-title="dailymotion" style="margin: 4px;" src="./OAuth.io_files/logo(22)" width="28"><img data-toggle="tooltip" title="" data-original-title="vk" style="margin: 4px;" src="./OAuth.io_files/logo(23)" width="28"><img data-toggle="tooltip" title="" data-original-title="500px" style="margin: 4px;" src="./OAuth.io_files/logo(24)" width="28"><img data-toggle="tooltip" title="" data-original-title="miso" style="margin: 4px;" src="./OAuth.io_files/logo(25)" width="28"><img data-toggle="tooltip" title="" data-original-title="twitter" style="margin: 4px;" src="./OAuth.io_files/logo(1)" width="28"><img data-toggle="tooltip" title="" data-original-title="google cloud" style="margin: 4px;" src="./OAuth.io_files/logo(26)" width="28"><img data-toggle="tooltip" title="" data-original-title="dailymile" style="margin: 4px;" src="./OAuth.io_files/logo(27)" width="28"><img data-toggle="tooltip" title="" data-original-title="google analytics" style="margin: 4px;" src="./OAuth.io_files/logo(28)" width="28"><img data-toggle="tooltip" title="" data-original-title="fitbit" style="margin: 4px;" src="./OAuth.io_files/logo(29)" width="28"><img data-toggle="tooltip" title="" data-original-title="google blogger" style="margin: 4px;" src="./OAuth.io_files/logo(30)" width="28"><img data-toggle="tooltip" title="" data-original-title="23andme" style="margin: 4px;" src="./OAuth.io_files/logo(31)" width="28"><img data-toggle="tooltip" title="" data-original-title="google latitude" style="margin: 4px;" src="./OAuth.io_files/logo(32)" width="28"><img data-toggle="tooltip" title="" data-original-title="google adexchange" style="margin: 4px;" src="./OAuth.io_files/logo(33)" width="28"><div class="row"></div><img data-toggle="tooltip" title="" data-original-title="imgur" style="margin: 4px;" src="./OAuth.io_files/logo(34)" width="28"><img data-toggle="tooltip" title="" data-original-title="google prediction" style="margin: 4px;" src="./OAuth.io_files/logo(35)" width="28"><img data-toggle="tooltip" title="" data-original-title="eventbrite" style="margin: 4px;" src="./OAuth.io_files/logo(36)" width="28"><img data-toggle="tooltip" title="" data-original-title="vimeo" style="margin: 4px;" src="./OAuth.io_files/logo(37)" width="28"><img data-toggle="tooltip" title="" data-original-title="trello" style="margin: 4px;" src="./OAuth.io_files/logo(38)" width="28"><img data-toggle="tooltip" title="" data-original-title="google site" style="margin: 4px;" src="./OAuth.io_files/logo(39)" width="28"><img data-toggle="tooltip" title="" data-original-title="google calendar" style="margin: 4px;" src="./OAuth.io_files/logo(40)" width="28"><img data-toggle="tooltip" title="" data-original-title="yammer" style="margin: 4px;" src="./OAuth.io_files/logo(41)" width="28"><img data-toggle="tooltip" title="" data-original-title="box" style="margin: 4px;" src="./OAuth.io_files/logo(42)" width="28"><img data-toggle="tooltip" title="" data-original-title="runkeeper" style="margin: 4px;" src="./OAuth.io_files/logo(43)" width="28"><img data-toggle="tooltip" title="" data-original-title="github" style="margin: 4px;" src="./OAuth.io_files/logo(2)" width="28"><img data-toggle="tooltip" title="" data-original-title="google plus" style="margin: 4px;" src="./OAuth.io_files/logo(44)" width="28"><img data-toggle="tooltip" title="" data-original-title="behance" style="margin: 4px;" src="./OAuth.io_files/logo(45)" width="28"><img data-toggle="tooltip" title="" data-original-title="flickr" style="margin: 4px;" src="./OAuth.io_files/logo(46)" width="28"><img data-toggle="tooltip" title="" data-original-title="google affiliate network" style="margin: 4px;" src="./OAuth.io_files/logo(47)" width="28"><div class="row"></div><img data-toggle="tooltip" title="" data-original-title="google documents" style="margin: 4px;" src="./OAuth.io_files/logo(48)" width="28"><img data-toggle="tooltip" title="" data-original-title="stackexchange" style="margin: 4px;" src="./OAuth.io_files/logo(3)" width="28"><img data-toggle="tooltip" title="" data-original-title="bitbucket" style="margin: 4px;" src="./OAuth.io_files/logo(49)" width="28"><img data-toggle="tooltip" title="" data-original-title="meetup" style="margin: 4px;" src="./OAuth.io_files/logo(50)" width="28"><img data-toggle="tooltip" title="" data-original-title="foursquare" style="margin: 4px;" src="./OAuth.io_files/logo(51)" width="28"><img data-toggle="tooltip" title="" data-original-title="assembla" style="margin: 4px;" src="./OAuth.io_files/logo(52)" width="28"><img data-toggle="tooltip" title="" data-original-title="google fusiontables" style="margin: 4px;" src="./OAuth.io_files/logo(53)" width="28"><img data-toggle="tooltip" title="" data-original-title="skyrock" style="margin: 4px;" src="./OAuth.io_files/logo(54)" width="28"><img data-toggle="tooltip" title="" data-original-title="google" style="margin: 4px;" src="./OAuth.io_files/logo(55)" width="28"><img data-toggle="tooltip" title="" data-original-title="google maps" style="margin: 4px;" src="./OAuth.io_files/logo(56)" width="28"><img data-toggle="tooltip" title="" data-original-title="google shopping" style="margin: 4px;" src="./OAuth.io_files/logo(57)" width="28"><img data-toggle="tooltip" title="" data-original-title="deezer" style="margin: 4px;" src="./OAuth.io_files/logo(58)" width="28"><img data-toggle="tooltip" title="" data-original-title="google drive" style="margin: 4px;" src="./OAuth.io_files/logo(59)" width="28"><img data-toggle="tooltip" title="" data-original-title="facebook" style="margin: 4px;" src="./OAuth.io_files/logo" width="28"><img data-toggle="tooltip" title="" data-original-title="google adsense" style="margin: 4px;" src="./OAuth.io_files/logo(60)" width="28"><div class="row"></div><img data-toggle="tooltip" title="" data-original-title="freebase" style="margin: 4px;" src="./OAuth.io_files/logo(61)" width="28"><img data-toggle="tooltip" title="" data-original-title="google contact" style="margin: 4px;" src="./OAuth.io_files/logo(62)" width="28"><img data-toggle="tooltip" title="" data-original-title="google books" style="margin: 4px;" src="./OAuth.io_files/logo(63)" width="28"><img data-toggle="tooltip" title="" data-original-title="mailchimp" style="margin: 4px;" src="./OAuth.io_files/logo(64)" width="28"><img data-toggle="tooltip" title="" data-original-title="cheddar" style="margin: 4px;" src="./OAuth.io_files/logo(65)" width="28"><img data-toggle="tooltip" title="" data-original-title="google dfareporting" style="margin: 4px;" src="./OAuth.io_files/logo(66)" width="28"><img data-toggle="tooltip" title="" data-original-title="plurk" style="margin: 4px;" src="./OAuth.io_files/logo(67)" width="28"><img data-toggle="tooltip" title="" data-original-title="tumblr" style="margin: 4px;" src="./OAuth.io_files/logo(6)" width="28"><img data-toggle="tooltip" title="" data-original-title="google tasks" style="margin: 4px;" src="./OAuth.io_files/logo(68)" width="28"><img data-toggle="tooltip" title="" data-original-title="deviantart" style="margin: 4px;" src="./OAuth.io_files/logo(69)" width="28"><img data-toggle="tooltip" title="" data-original-title="dropbox" style="margin: 4px;" src="./OAuth.io_files/logo(70)" width="28"><img data-toggle="tooltip" title="" data-original-title="tripit" style="margin: 4px;" src="./OAuth.io_files/logo(71)" width="28"></div>
+          <hr>
+          <div class="row" style="margin: 25px 0">
+            <div class="col col-lg-12" style="text-align: center">
+              <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./OAuth.io_files/tweet_button.1403226798.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
+              <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="./OAuth.io_files/follow_button.1403226798.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 218px; height: 20px;"></iframe>
+            </div>
+          </div>
+        </div>
+        <script async="" src="./OAuth.io_files/widgets.js" charset="utf-8"></script>
+          <div style="margin-top: 20px">
+            <p style="text-align: center"><strong>powered by <a href="https://oauth.io/">OAuth.io</a> &amp; <a href="http://webshell.io/">Webshell</a></strong></p>
+          </div>
+        </div>
+      </div>
+    
+    <a href="https://github.com/oauth-io/oauth-js" style="position: absolute; top: 0; right: 0"><img src="./OAuth.io_files/fork-me.png"></a>
+  
+
+</body></html>
