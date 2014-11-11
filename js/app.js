@@ -42,8 +42,8 @@ $(document).ready(function () {
       var authAddUserUrl = apiUrl + '/user/match/collaborators' + tokenUrl;
 
       //display a string on the page
-      function render(object) {
-        $('.repos').hide().append(object).fadeIn();
+      function render(htmlString) {
+        $('.repos').hide().append(htmlString).fadeIn();
       };
 
       //get authenticated repos
@@ -74,10 +74,7 @@ $(document).ready(function () {
         );
       }
 
-      getRepo(function (htmlString) {
-        // hide then append htmlString
-        $('.repos').hide().html(htmlString).fadeIn();
-      }).done(function (result) {
+      getRepo().done(function (result) {
         var repos = "";
         for (var i = 0; i < result.length; i++) {
           parseRepo(result[i]);
