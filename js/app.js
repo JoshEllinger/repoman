@@ -42,12 +42,12 @@ $(document).ready(function () {
       var authAddUserUrl = apiUrl + '/user/match/collaborators' + tokenUrl;
 
       //display a string on the page
-      function display(object) {
+      function render(object) {
         $('.repos').hide().html(object).fadeIn();
       };
 
       //get authenticated repos
-      function getRepo(callback) {
+      function getRepo() {
         var promise = $.ajax({
           url: authRepoUrl,
           type: 'GET',
@@ -59,17 +59,17 @@ $(document).ready(function () {
       function parseRepo(repo){
         getRepoLanguage(repo.owner.login, repo.name).done(function (language_results) {
             //format the repos into buttons/links and checkboxes
-            var repos = '<div class="list-group-item"> ';
-            repos += '<a href=' + repo.html_url + ' class="btn btn-primary">';
-            repos += repo.name + '</a> ';
-            repos += '<ul>';
-            for (var j = 0; j < language_results.length; j++) {
-              repos += '<li>' + j + ':' + language_results[j] + '</li>';
+            var output = '<div class="list-group-item"> ';
+            output += '<a href=' + repo.html_url + ' class="btn btn-primary">';
+            output += repo.name + '</a> ';
+            output += '<ul>';
+            for (var j in language_results) {
+              output += '<li>' + j + ':' + language_results[j] + '</li>';
             }
-            repos += '</ul>';
-            repos += '<label class="btn btn-primary"> <input type="checkbox" id=' + repo.name + '> Add collaborator </label></div>';
+            output += '</ul>';
+            output += '<label class="btn btn-primary"> <input type="checkbox" id=' + repo.name + '> Add collaborator </label></div>';
 
-            callback(repos);
+            render(output);
           }
         );
       }
