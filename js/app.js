@@ -43,7 +43,7 @@ $(document).ready(function () {
 
       //display a string on the page
       function render(object) {
-        $('.repos').hide().html(object).fadeIn();
+        $('.repos').hide().append(object).fadeIn();
       };
 
       //get authenticated repos
