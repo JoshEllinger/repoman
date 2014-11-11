@@ -5,6 +5,9 @@ $(document).ready(function () {
   //oauth.io authentication
   OAuth.initialize('vMLd_AIdnpZtRPRH61n9z4j8RS8', {cache: true});
 
+  /**
+   * Initialization.
+   */
   if (OAuth.create('github')) {
     console.log(OAuth.create('github'));
     $('.signIn').hide();
@@ -17,10 +20,15 @@ $(document).ready(function () {
     $('.signIn').on('click', doEverything);
   }
 
+  /**
+   * After login.
+   */
   function doEverything() {
+    var access_token = '';
     OAuth.popup('github', {cache: true}, function (error, result) {
       console.log(error);
       console.log(result);
+      access_token = result.access_token;
       //handle error with error
       //use result.access_token in your API request
       $('.signIn').hide();
@@ -40,22 +48,53 @@ $(document).ready(function () {
 
       //get authenticated repos
       function getRepo(callback) {
-        $.ajax({
+        var promise = $.ajax({
           url: authRepoUrl,
           type: 'GET',
-          data: {'sort': 'updated'},
-          success: function (result) {
-            var repos = "";
-            for (var i = 0; i < result.length; i++) {
-              //format the repos into buttons/links and checkboxes
-              repos += '<div class="list-group-item"> <a href=' + result[i].html_url + ' class="btn btn-primary">' + result[i].name + '</a> <label class="btn btn-primary"> <input type="checkbox" id=' + result[i].name + '> Add collaborator </label></div>';
-              callback(repos);
-            }
-          }
+          data: {'sort': 'updated'}
         });
+        return promise;
       }
 
-      getRepo(display);
+      function parseRepo(repo){
+        getRepoLanguage(repo.owner.login, repo.name).done(function (language_results) {
+            //format the repos into buttons/links and checkboxes
+            var repos = '<div class="list-group-item"> ';
+            repos += '<a href=' + repo.html_url + ' class="btn btn-primary">';
+            repos += repo.name + '</a> ';
+            repos += '<ul>';
+            for (var j = 0; j < language_results.length; j++) {
+              repos += '<li>' + j + ':' + language_results[j] + '</li>';
+            }
+            repos += '</ul>';
+            repos += '<label class="btn btn-primary"> <input type="checkbox" id=' + repo.name + '> Add collaborator </label></div>';
+
+            callback(repos);
+          }
+        );
+      }
+
+      getRepo(function (htmlString) {
+        // hide then append htmlString
+        $('.repos').hide().html(htmlString).fadeIn();
+      }).done(function (result) {
+        var repos = "";
+        for (var i = 0; i < result.length; i++) {
+          parseRepo(result[i]);
+        }
+      });
+
+
+      function getRepoLanguage(owner, repo) {
+        var promise = $.ajax({
+          url: apiUrl + '/repos/' + owner + '/' + repo + '/languages',
+          type: 'GET',
+          parameters: {
+            access_token: access_token
+          }
+        });
+        return promise;
+      }
 
       //when create button is clicked, create a new repo and display it
       $(".create").on('click', function () {
