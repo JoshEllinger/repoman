@@ -16,7 +16,7 @@ $(document).ready( function () {
         $('#createRepo, #addUser, #listRepos').hide();
         $('.signIn').on('click', doEverything );
     }
-    
+
     function doEverything() {
       OAuth.popup('github', {cache: true}, function(error, result) {
         console.log(error);
@@ -30,13 +30,13 @@ $(document).ready( function () {
         var apiUrl = "https://api.github.com";
         var tokenUrl ='?access_token='+result.access_token;
         var userUrl = apiUrl+'/user'+tokenUrl;
-        var authRepoUrl = apiUrl+'/user/repos'+tokenUrl
-        var authAddUserUrl = apiUrl+'/user/match/collaborators'+tokenUrl;     
+        var authRepoUrl = apiUrl+'/user/repos'+tokenUrl;
+        var authAddUserUrl = apiUrl+'/user/match/collaborators'+tokenUrl;
         
         //display a string on the page
         function display(object) {
           $('.repos').hide().html(object).fadeIn();
-        }; 
+        };
 
         //get authenticated repos
         function getRepo(callback) {
@@ -58,7 +58,7 @@ $(document).ready( function () {
 
         //when create button is clicked, create a new repo and display it
         $(".create").on('click', function() {
-          event.preventDefault();            
+          event.preventDefault();
           $.ajax(authRepoUrl, {
             type: 'POST',
             data: JSON.stringify({
@@ -76,7 +76,7 @@ $(document).ready( function () {
 
 
 
-   
+
         //add collaborator to repo(s) function
         function addCollaborator(userAdded, repo) {
           $.get(userUrl, function(user) {
@@ -108,8 +108,8 @@ $(document).ready( function () {
               addCollaborator($('.userName').val(), repos[i].id);
             }
           }
-            
-        }); 
+
+        });
       });
     };
 }); 
